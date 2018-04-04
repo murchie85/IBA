@@ -30,20 +30,34 @@ for filename in os.listdir(directory):
 print('The available files are ' + str(availableAccounts))
 
 
-# iterate through avaialble account files
 
-# ======================== populate array
+# ======================== Iterate through files and populate array
 #initialize iterators
 # PARSE FILES TO ARRAY
 
 a = 0
-b = 0
+
 currentRow = 0
+accountArray = []
 
 
 for a in range(0, len(availableAccounts)):
-	with open(str(directory) + str(availableAccounts[a]) + ".csv", 'rU') as f:
+    print("The current Account Being processed is " + str(availableAccounts[a]))
+    with open(str(directory) + str(availableAccounts[a]) + ".csv", 'rU') as f:
+        currentRow = []
+        for line in f:
+            words = line.split(",")
+            print(line)
+            myarray = np.asarray(words)
+            currentRow.append(myarray)
+        accountArray.append(np.asarray(currentRow))
 
-		currentRow = [] 
-		for line in f:  # iterate through stored 
-			print(line)
+
+# ======================== main process
+
+
+
+fileNumber = 0
+
+for fileNumber in range(0, len(accountArray)):
+    print(accountArray[fileNumber][3:])
